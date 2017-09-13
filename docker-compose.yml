@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  etherpad:
+    image: etherpad:latest
+    environment:
+      ETHERPAD_DB_PASSWORD: root
+    ports:
+      - "8080:9001"
+  mysql:
+    image: mariadb:10.2
+    environment:
+      MYSQL_ROOT_PASSWORD: root
