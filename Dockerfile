@@ -4,11 +4,8 @@ MAINTAINER Flavien Hardy <flav.hardy@gmail.com>
 
 ENV ETHERPAD_VERSION 1.6.1
 
-RUN apk add -U curl unzip nodejs-npm mysql-client bash
-
-WORKDIR /opt/
-
-RUN curl -SL \
+RUN apk add -U curl unzip nodejs-npm mysql-client bash && \
+    curl -SL \
     https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.zip \
     > etherpad.zip && unzip etherpad && rm etherpad.zip && \
     mv etherpad-lite-${ETHERPAD_VERSION} etherpad-lite
@@ -18,9 +15,6 @@ WORKDIR etherpad-lite
 RUN bin/installDeps.sh && rm settings.json
 COPY entrypoint.sh /entrypoint.sh
 
-RUN sed -i 's/^node/exec\ node/' bin/run.sh
-
-VOLUME /opt/etherpad-lite/var
 RUN ln -s var/settings.json settings.json
 
 EXPOSE 9001
