@@ -5,6 +5,7 @@ services:
     image: etherpad:latest
     environment:
       ETHERPAD_DB_PASSWORD: root
+      ETHERPAD_USE_SETTINGS_FILE: "true"
     ports:
       - "8080:9001"
   mysql:
