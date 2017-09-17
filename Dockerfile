@@ -19,7 +19,7 @@ WORKDIR /etherpad-lite
 USER etherpad
 RUN bin/installDeps.sh && rm /etherpad-lite/settings.json
 
-VOLUME /etherpad-lite/node_modules
+VOLUME /etherpad-lite/node_modules /etherpad-lite/var
 EXPOSE 9001
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bin/run.sh"]
