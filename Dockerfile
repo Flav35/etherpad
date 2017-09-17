@@ -5,20 +5,21 @@ MAINTAINER Flavien Hardy <flav.hardy@gmail.com>
 ENV ETHERPAD_VERSION 1.6.1
 
 RUN apk add -U curl unzip nodejs-npm mysql-client bash && \
-    curl -SL \
-    https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.zip \
-    > etherpad.zip && unzip etherpad && rm etherpad.zip && \
-    mv etherpad-lite-${ETHERPAD_VERSION} /etherpad-lite
+    curl -SL https://github.com/ether/etherpad-lite/archive/${ETHERPAD_VERSION}.zip > etherpad.zip && \
+    unzip etherpad && \
+    rm etherpad.zip && \
+    mv etherpad-lite-${ETHERPAD_VERSION} /etherpad-lite && \
+    adduser -D etherpad && \
+    chown -R etherpad:etherpad /etherpad-lite
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chown etherpad:etherpad /entrypoint.sh
 
 WORKDIR /etherpad-lite
+USER etherpad
+RUN bin/installDeps.sh && rm /etherpad-lite/settings.json
 
-RUN bin/installDeps.sh && rm settings.json
-COPY entrypoint.sh /entrypoint.sh
-
-RUN ln -s var/settings.json settings.json
-
-VOLUME /etherpad-lite/var
-
+VOLUME /etherpad-lite/node_modules
 EXPOSE 9001
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["bin/run.sh", "--root"]
+CMD ["bin/run.sh"]

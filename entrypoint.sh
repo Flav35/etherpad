@@ -4,6 +4,7 @@ set -e
 : ${ETHERPAD_DB_HOST:=mysql}
 : ${ETHERPAD_DB_USER:=root}
 : ${ETHERPAD_DB_NAME:=etherpad}
+: ${ETHERPAD_ROOT_DIR:='/etherpad-lite'}
 ETHERPAD_DB_NAME=$( echo $ETHERPAD_DB_NAME | sed 's/\./_/g' )
 
 # ETHERPAD_DB_PASSWORD is mandatory in mysql container, so we're not offering
@@ -38,7 +39,7 @@ if [ "$RESULT" != $ETHERPAD_DB_NAME ]; then
 	      -e "create database ${ETHERPAD_DB_NAME}"
 fi
 
-if [ ! -f settings.json ]; then
+if [ ! -f ${ETHERPAD_ROOT_DIR}/settings.json ]; then
 
 	cat <<- EOF > settings.json
 	{
@@ -59,7 +60,7 @@ if [ ! -f settings.json ]; then
 
 		: ${ETHERPAD_ADMIN_USER:=admin}
 
-		cat <<- EOF >> settings.json
+		cat <<- EOF >> ${ETHERPAD_ROOT_DIR}/settings.json
 		  "users": {
 		    "${ETHERPAD_ADMIN_USER}": {
 		      "password": "${ETHERPAD_ADMIN_PASSWORD}",
@@ -69,7 +70,7 @@ if [ ! -f settings.json ]; then
 		EOF
 	fi
 
-	cat <<- EOF >> settings.json
+	cat <<- EOF >> ${ETHERPAD_ROOT_DIR}/settings.json
 	}
 	EOF
 fi
