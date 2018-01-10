@@ -10,7 +10,8 @@ RUN apk add -U curl unzip nodejs-npm mysql-client bash && \
     rm etherpad.zip && \
     mv etherpad-lite-${ETHERPAD_VERSION} /etherpad-lite && \
     adduser -D etherpad && \
-    chown -R etherpad:etherpad /etherpad-lite
+    chown -R etherpad:etherpad /etherpad-lite && \
+    rm -rf /var/cache/apk/*
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chown etherpad:etherpad /entrypoint.sh

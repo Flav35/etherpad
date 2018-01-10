@@ -1,30 +1,14 @@
-# Etherpad Lite image for docker
+# Etherpad Lite
 
-This is a docker image for [Etherpad Lite](http://etherpad.org/) collaborative
-text editor. The Dockerfile for this image has been inspired by the
-[official Wordpress](https://registry.hub.docker.com/_/wordpress/) Dockerfile and
-[johbo's etherpad-lite](https://registry.hub.docker.com/u/johbo/etherpad-lite/)
-image.
+Dockerfile inspired by [tvelocity/etherpad-lite]( https://github.com/tvelocity/dockerfiles/tree/master/etherpad-lite)
 
-This image uses an mysql container for the backend for the pads. It is based
-on debian jessie instead of the official node docker image, since the latest
-stable version of etherpad-lite does not support npm 2.
+## Etherpad Lite source code
 
-> *Original Dockerfile (based on Debian:jessie) from https://github.com/tvelocity/dockerfiles/tree/master/etherpad-lite*
-
-## About Etherpad Lite
-
-> *From the official website:*
-
-Etherpad allows you to edit documents collaboratively in real-time, much like a live multi-player editor that runs in your browser. Write articles, press releases, to-do lists, etc. together with your friends, fellow students or colleagues, all working on the same document at the same time.
-
-![alt text](http://i.imgur.com/zYrGkg3.gif "Etherpad in action on PrimaryPad")
-
-All instances provide access to all data through a well-documented API and supports import/export to many major data exchange formats. And if the built-in feature set isn't enough for you, there's tons of plugins that allow you to customize your instance to suit your needs.
-
-You don't need to set up a server and install Etherpad in order to use it. Just pick one of publicly available instances that friendly people from everywhere around the world have set up. Alternatively, you can set up your own instance by following our installation guide
+Source code come from the following [GitHub project](https://github.com/ether/etherpad-lite).
 
 ## Quickstart
+
+> From [tvelocity/etherpad-lite]( https://github.com/tvelocity/dockerfiles/tree/master/etherpad-lite) Documentation
 
 First you need a running mysql container, for example:
 
@@ -50,6 +34,8 @@ You can now access Etherpad Lite from http://localhost:9001/
 
 ## Environment variables
 
+> From [tvelocity/etherpad-lite]( https://github.com/tvelocity/dockerfiles/tree/master/etherpad-lite) Documentation
+
 This image supports the following environment variables:
 
 * `ETHERPAD_TITLE`: Title of the Etherpad Lite instance. Defaults to "Etherpad".
@@ -72,5 +58,4 @@ automatically used.
 * `ETHERPAD_DB_NAME`: The mysql database to use. Defaults to *etherpad*. If the
 database is not available, it will be created when the container is launched.
 
-The generated settings.json file will be available as a volume under
-*/opt/etherpad-lite/var/*.
+## 
