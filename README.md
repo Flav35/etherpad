@@ -4,7 +4,7 @@ Dockerfile inspired by [tvelocity/etherpad-lite]( https://github.com/tvelocity/d
 
 ## Etherpad Lite source code
 
-Source code come from the following [GitHub project](https://github.com/ether/etherpad-lite).
+Source code comes from the following [GitHub project](https://github.com/ether/etherpad-lite).
 
 ## Quickstart
 
@@ -57,5 +57,3 @@ are used and ETHERPAD_DB_USER is root, then `MYSQL_ENV_MYSQL_ROOT_PASSWORD` is
 automatically used.
 * `ETHERPAD_DB_NAME`: The mysql database to use. Defaults to *etherpad*. If the
 database is not available, it will be created when the container is launched.
-
-## 
